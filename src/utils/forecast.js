@@ -9,7 +9,12 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('Unable to find location', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary + ' It is currently ' +((( body.currently.temperature)-32)*(5/9) )+ '° Celsius out. There is a ' + body.currently.precipProbability + '% chance of rain.')
+            // console.log(body.daily .data[0]);
+        // console.log( body.daily.data[0].temperatureHigh);
+        // console.log( body.daily.data[0].temperatureLow);  
+            
+       
+            callback(undefined, body.daily.data[0].summary + ' It is currently ' +parseInt( ((( body.currently.temperature)-32)*(5/9) ))+ '° Celsius out.'+'and its tempreture in morning is '+parseInt( ((body.daily.data[0].temperatureHigh-32)*(5/9) ) )+'° Celsius and its tempreture in evening is '+parseInt( ((body.daily.data[0].temperatureLow -32)*(5/9) )) +'° Celsius There is a ' + body.currently.precipProbability + '% chance of rain.')
         }
     })
 }
